@@ -848,7 +848,7 @@ function resetUser(req, res, dm) {
         var userObj = {};
         userObj._id = Uid;
         if (doc && doc.resetKey && (Date.now() - doc.resetDate) / 86400000 < 1) {
-            if (HmacMD5(HmacMD5(doc.resetKey, reset.r), reset.u, 'base64') === reset.k) {
+            if (HmacMD5(HmacMD5(doc.resetKey, reset.r), reset.u + '', 'base64') === reset.k) {
                 switch (reset.r) {
                 case 'locked':
                     userObj.locked = false;
